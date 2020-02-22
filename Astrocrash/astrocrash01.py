@@ -12,8 +12,8 @@ class Asteroid(games.Sprite):
     MEDIUM = 2
     LARGE = 3
     images = {SMALL  : games.load_image("asteroid_small.bmp"),
-              MEDIUM : games.load_image("asteroid_medium.bmp"),
-              LARGE  : games.load_image("asteroid_large.bmp") }
+              MEDIUM : games.load_image("asteroid_med.bmp"),
+              LARGE  : games.load_image("asteroid_big.bmp") }
 
     SPEED = 2
     SPAWN = 2
@@ -47,7 +47,7 @@ class Asteroid(games.Sprite):
         """ Destroy asteroid. """
         # if asteroid isn't small, replace with two smaller
         if self.size != Asteroid.SMALL:
-            for i in ramge(Asteroid.SPAWN):
+            for i in range(Asteroid.SPAWN):
                 new_asteroid = Asteroid(x = self.x, y = self.y, size = self.size - 1)
                 games.screen.add(new_asteroid)
         self.destroy()
@@ -60,7 +60,7 @@ def main():
     # create 8 asteroids
     for i in range(8):
         x = random.randrange(games.screen.width)
-        y = random.randrange(games.screeen.height)
+        y = random.randrange(games.screen.height)
         size = random.choice([Asteroid.SMALL, Asteroid.MEDIUM, Asteroid.LARGE])
         new_asteroid = Asteroid(x = x, y = y, size = size)
         games.screen.add(new_asteroid)

@@ -21,4 +21,16 @@ class Wrapper(games.Sprite):
 class Collider(Wrapper):
     """ A Wrapper that can collide with another object. """
     def update(self):
-        
+        """ Check for overlapping sprites. """
+        super(Collider, self).update()
+
+        if self.overlapping_sprites:
+            for sprite in self.overlapping_sprites:
+                sprite.die()
+            self.die()
+
+    def die(self):
+        """ Destroy self and leave explosion behind. """
+        new_explosion = Explosion(x = self.x, y = self.y)
+        games.screen.add(new_explosion)
+        self.destroy()
